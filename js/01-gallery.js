@@ -1,5 +1,4 @@
 import { galleryItems } from './gallery-items.js';
-//import * as basicLightbox from 'basiclightbox';
 // Change code below this line
 console.log(galleryItems);
 const galleryEl = document.querySelector('.gallery');
@@ -22,7 +21,7 @@ const makeGalleryMarkup = (galleryItems) => {
 const galleryMarkup = makeGalleryMarkup(galleryItems);
 console.log(galleryMarkup);
 
-galleryEl.insertAdjacentHTML("afterbegin", galleryMarkup);
+galleryEl.innerHTML = galleryMarkup;
 
 galleryEl.addEventListener('click', onGalleryClick);
 
@@ -36,6 +35,17 @@ function onGalleryClick(event) {
 `);
 
     instance.show();
+
+}
+
+window.addEventListener('keydown', onEscKeydown);
+
+function onEscKeydown(event) {
+    if (event.code !== Escape) {
+        return;
+    } else {
+        instance.close();
+    }
 }
 
 console.log(galleryItems);
