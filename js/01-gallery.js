@@ -1,4 +1,5 @@
 import { galleryItems } from './gallery-items.js';
+//import * as basicLightbox from 'basiclightbox';
 // Change code below this line
 console.log(galleryItems);
 const galleryEl = document.querySelector('.gallery');
@@ -28,7 +29,13 @@ galleryEl.addEventListener('click', onGalleryClick);
 function onGalleryClick(event) {
     event.preventDefault();
 
-    event.target.src = event.target.dataset.source;
+    const instance = basicLightbox.create(`
+    <div class="modal">
+       <img src="${event.target.dataset.source}" alt="${event.target.alt}" />
+    </div>
+`);
+
+    instance.show();
 }
 
 console.log(galleryItems);
