@@ -15,11 +15,14 @@ console.log(galleryMarkup);
 
 galleryEl.innerHTML = galleryMarkup;
 
-let lightbox = new SimpleLightbox('.gallery a');
+let lightbox = new SimpleLightbox('.gallery a', {
+    captionsData: 'alt',
+    captionsDelay: 250,
+});
 
-lightbox.captionsData = alt;
-lightbox.captionDelay = 250;
 
-lightbox.show(captions);
+
+console.log(lightbox);
+
 
 console.log(galleryItems);
