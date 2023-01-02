@@ -25,12 +25,15 @@ galleryEl.innerHTML = galleryMarkup;
 
 galleryEl.addEventListener('click', onGalleryClick);
 
-function onEscKeydown(event) {
+
+
+
+/*function onEscKeydown(event) {
     if (event.code !== 'Escape') {
         return;
     } 
     instance.close();
-}
+}*/
 
 function onGalleryClick(event) {
     event.preventDefault();
@@ -41,16 +44,26 @@ function onGalleryClick(event) {
     </div>
 `,
         {
-            onOpenModal: (instance) => {
-                window.addEventListener('keydown', onEscKeydown);
-            },
+            onShow: () => {
+                window.addEventListener('keydown', (event) => {
+                    if (event.code !== 'Escape') {
+                         return;
+                 } 
+                     instance.close();
+                })
+                 },
     
-            onCloseModal: (instance) => {
-                window.removeEventListener('keydown', onEscKeydown);
-            }
+            onClose: () => {
+                window.removeEventListener('keydown', (event) => {
+                    if (event.code !== 'Escape') {
+                         return;
+                 } 
+                     instance.close();
+                })
+           },
         });
-          instance.show(); 
-  //   return instance;
+         instance.show(); 
+    //return instance;
 }
 
 
