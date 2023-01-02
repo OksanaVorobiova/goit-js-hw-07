@@ -25,6 +25,13 @@ galleryEl.innerHTML = galleryMarkup;
 
 galleryEl.addEventListener('click', onGalleryClick);
 
+function onEscKeydown(event) {
+    if (event.code !== 'Escape') {
+        return;
+    } 
+    instance.close();
+}
+
 function onGalleryClick(event) {
     event.preventDefault();
 
@@ -32,20 +39,21 @@ function onGalleryClick(event) {
     <div class="modal">
        <img src="${event.target.dataset.source}" alt="${event.target.alt}" />
     </div>
-`);
-
-    instance.show();
-
+`,
+        {
+            onOpenModal: (instance) => {
+                window.addEventListener('keydown', onEscKeydown);
+            },
+    
+            onCloseModal: (instance) => {
+                window.removeEventListener('keydown', onEscKeydown);
+            }
+        });
+          instance.show(); 
+  //   return instance;
 }
 
-window.addEventListener('keydown', onEscKeydown);
 
-function onEscKeydown(event) {
-    if (event.code !== Escape) {
-        return;
-    } else {
-        instance.close();
-    }
-}
 
-console.log(galleryItems);
+
+//console.log(galleryItems);
